@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 class ReportSerializer(serializers.ModelSerializer):
     actor = serializers.JSONField()
-    payload = serializers.JSONField(required=False)
+    raw = serializers.CharField(required=False)
 
     class Meta:
         model = Report
@@ -16,5 +16,5 @@ class ReportSerializer(serializers.ModelSerializer):
         # data.pop("date", None)
         # data.pop("actor", None)
         data.pop("HMAC", None)
-        ret.update({"raw": data})
+        ret.update({"raw": data.get("raw", {})})
         return ret
