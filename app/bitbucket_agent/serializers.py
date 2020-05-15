@@ -8,7 +8,7 @@ class ReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Report
-        fields = ["actor", "eventKey", "date", "HMAC", "payload"]
+        fields = ["actor", "eventKey", "date", "HMAC", "raw"]
 
     def to_internal_value(self, data):
         ret = super().to_internal_value(data)
@@ -16,5 +16,5 @@ class ReportSerializer(serializers.ModelSerializer):
         # data.pop("date", None)
         # data.pop("actor", None)
         data.pop("HMAC", None)
-        ret.update({"payload": data})
+        ret.update({"raw": data})
         return ret

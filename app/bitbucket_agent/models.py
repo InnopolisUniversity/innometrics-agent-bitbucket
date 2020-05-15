@@ -6,5 +6,6 @@ class Report(models.Model):
     date = models.DateTimeField()
     actor = models.TextField()
     HMAC = models.TextField(null=True)
-    payload = models.TextField()
+    raw = models.TextField()
+    # payload = models.TextField()
     received_on = models.DateTimeField(auto_now_add=True, null=True)
